@@ -82,7 +82,7 @@
                                                                     preferredStyle:UIAlertControllerStyleAlert];
     
   [alertController
-   addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+   addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
                                        style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {completionHandler();}])];
 
@@ -93,10 +93,10 @@
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
 {
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-  [alertController addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) { 
+  [alertController addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) { 
     completionHandler(NO); 
   }])];
-  [alertController addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { 
+  [alertController addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { 
     completionHandler(YES); 
   }])];
   UIViewController *_viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -115,13 +115,13 @@
     textField.text = defaultText;
   }];
 
-  [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction _Nonnull *action) {
+  [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     completionHandler(nil);
   }]];
 
-  [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     completionHandler(alertController.textFields[0].text?:@"");
-  }])];
+  }]];
 
   UIViewController *_viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
   [_viewController presentViewController:alertController animated:YES completion:nil];
