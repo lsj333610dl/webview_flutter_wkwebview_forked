@@ -76,6 +76,29 @@
   FLTWKProgressionDelegate* _progressionDelegate;
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler { 
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { 
+    completionHandler(); 
+  }])]; 
+
+  UIViewController *_viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+  [_viewController presentViewController:alertController animated:YES completion:nil]; 
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+  [alertController addAction:([UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) { 
+    completionHandler(NO); 
+  }])];
+  [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { 
+    completionHandler(YES); 
+  }])];
+  UIViewController *_viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+  [_viewController presentViewController:alertController animated:YES completion:nil];
+}
+
+
 - (instancetype)initWithFrame:(CGRect)frame
                viewIdentifier:(int64_t)viewId
                     arguments:(id _Nullable)args
