@@ -77,8 +77,8 @@
 }
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
-  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
-                                                                           message:message?:@""
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message?:@""
+                                                                           message:@""
                                                                     preferredStyle:UIAlertControllerStyleAlert];
     
   [alertController
@@ -92,7 +92,7 @@
 
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
 {
-  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message?:@"" message:@"" preferredStyle:UIAlertControllerStyleAlert];
   [alertController addAction:([UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) { 
     completionHandler(NO); 
   }])];
@@ -105,7 +105,7 @@
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *result))completionHandler
 {
-  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt 
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt?:@""
                                                                            message:@""
                                                                     preferredStyle:UIAlertControllerStyleAlert];
 
